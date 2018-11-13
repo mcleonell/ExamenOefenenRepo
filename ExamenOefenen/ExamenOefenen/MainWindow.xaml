@@ -11,5 +11,7 @@
         <ListBox x:Name="lstUsers" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="140"/>
         <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Height="30" Margin="195,115,0,0" VerticalAlignment="Top" Width="80" Click="btnCreate_Click"/>
         <TextBox x:Name="txtNewUsername" HorizontalAlignment="Left" Height="23" Margin="195,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
+        <ListBox x:Name="lstVakken" HorizontalAlignment="Left" Height="100" Margin="330,10,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button x:Name="btnLaadVakken" Content="Laad vakken" HorizontalAlignment="Left" Height="30" Margin="330,115,0,0" VerticalAlignment="Top" Width="80" Click="btnLaadVakken_Click"/>
     </Grid>
 </Window>

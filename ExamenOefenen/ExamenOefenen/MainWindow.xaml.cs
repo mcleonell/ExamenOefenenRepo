@@ -66,5 +66,21 @@ namespace ExamenOefenen
                 MessageBox.Show("Username mag niet leeg zijn.");
             }
         }
+
+
+        // TODO - VakkenListTester Testen en als het werkt verwijderen
+        void VakkenListTester()
+        {
+            Vak v = new Vak();
+            foreach (Vak vak in v.VakkenList())
+            {
+                lstVakken.Items.Add(vak.VakID + ": " + vak.VakNaam);
+            }
+        }
+
+        private void btnLaadVakken_Click(object sender, RoutedEventArgs e)
+        {
+            VakkenListTester();
+        }
     }
 }

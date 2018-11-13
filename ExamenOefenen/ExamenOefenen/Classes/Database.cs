@@ -40,7 +40,7 @@ namespace ExamenOefenen
         /// <returns></returns>
         public ArrayList GetColumn(string _table, string _column)
         {
-            // TODO - Make it accept more columns
+            // TODO - Make it accept more columns at once
 
             ArrayList tempList = new ArrayList();
 
@@ -70,8 +70,18 @@ namespace ExamenOefenen
             }
 
         }
+
+        /// <summary>
+        /// Adds string input to selected column of table in database
+        /// </summary>
+        /// <param name="_table">Table you want to put data in</param>
+        /// <param name="_column">Column you want to put data in</param>
+        /// <param name="_input">User input (Value to add to database)</param>
+        /// <returns></returns>
         public void AddToColumn(string _table, string _column, string _input)
         {
+            // TODO - Make it accept more multiple values per column && multiple columns at once
+
             SqlConnection con = GetSqlConnectiont();
             using (con)
             {

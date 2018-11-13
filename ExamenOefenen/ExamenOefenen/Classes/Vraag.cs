@@ -8,6 +8,8 @@ namespace ExamenOefenen
 {
     class Vraag
     {
+        //ExamenOefenen.dbo.vragen (vraagID, vraagstuk, antwoord, vakID)
+
         string vraagstuk;
         string antwoord;
 
