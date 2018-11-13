@@ -37,8 +37,9 @@ namespace ExamenOefenen
         /// </summary>
         /// <param name="_table">Table from which you want to retrieve data</param>
         /// <param name="_column">Column from which you want to retrieve data</param>
+        /// <param name="_orderBy">Colum which the returned values will be ordered by (tpyicaly ID) </param>
         /// <returns></returns>
-        public ArrayList GetColumn(string _table, string _column)
+        public ArrayList GetColumn(string _table, string _column, string _orderBy)
         {
             // TODO - Make it accept more columns at once
 
@@ -49,7 +50,7 @@ namespace ExamenOefenen
             using (con)
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT " + _column + " FROM " + _table, con);
+                SqlCommand cmd = new SqlCommand("SELECT " + _column + " FROM " + _table + " ORDER BY " + _orderBy, con);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 

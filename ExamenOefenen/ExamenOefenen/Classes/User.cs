@@ -12,29 +12,29 @@ namespace ExamenOefenen
 
         #region vars
         string username;
-        public string Username
-        {
-            get
-            {
-                return username;
-            }
-            set
-            {
-                username = value;
-            }
-        }
-
-
+        public string Username{ get { return username;} set { username = value; } }
+        
         // TODO - Als alles van vakken werkt moeten de lijst van vakken per userID hierin geladen worden 
-        public List<Vak> Vakken { get; set; }
         #endregion
 
-        public List<string> UsernameList()
+        public static List<int> UserIDList()
+        {
+            Database db = new Database();
+            List<int> userIDList = new List<int>();
+
+            foreach (var item in db.GetColumn("users", "userID", "userID"))
+            {
+                userIDList.Add((int)item);
+            }
+
+            return userIDList;
+        }
+        public static List<string> UsernameList()
         {
             Database db = new Database();
             List<string> usernameList = new List<string>();
 
-            foreach (var item in db.GetColumn("users", "username"))
+            foreach (var item in db.GetColumn("users", "username", "userID"))
             {
                 usernameList.Add(item.ToString());
             }

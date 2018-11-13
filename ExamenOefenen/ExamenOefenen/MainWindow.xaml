@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="193.719" Width="533.292">
     <Grid>
-        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Height="30" Margin="10,115,0,0" VerticalAlignment="Top" Width="80" Click="btnLogin_Click"/>
+        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Height="30" Margin="10,115,0,0" VerticalAlignment="Top" Width="67" Click="btnLogin_Click"/>
         <ListBox x:Name="lstUsers" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="140"/>
-        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Height="30" Margin="195,115,0,0" VerticalAlignment="Top" Width="80" Click="btnCreate_Click"/>
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Height="30" Margin="195,115,0,0" VerticalAlignment="Top" Width="62" Click="btnCreate_Click"/>
         <TextBox x:Name="txtNewUsername" HorizontalAlignment="Left" Height="23" Margin="195,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130"/>
-        <ListBox x:Name="lstVakken" HorizontalAlignment="Left" Height="100" Margin="330,10,0,0" VerticalAlignment="Top" Width="140"/>
+        <ListBox x:Name="lstVakken" HorizontalAlignment="Left" Height="100" Margin="330,10,0,0" VerticalAlignment="Top" Width="171"/>
         <Button x:Name="btnLaadVakken" Content="Laad vakken" HorizontalAlignment="Left" Height="30" Margin="330,115,0,0" VerticalAlignment="Top" Width="80" Click="btnLaadVakken_Click"/>
+        <Button x:Name="btnRefresh" Content="Refresh list" HorizontalAlignment="Left" Height="30" Margin="82,115,0,0" VerticalAlignment="Top" Width="68" Click="btnRefresh_Click"/>
     </Grid>
 </Window>

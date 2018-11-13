@@ -28,10 +28,20 @@ namespace ExamenOefenen
 
         void FillUserList()
         {
-            User u = new User();
-            foreach(string username in u.UsernameList())
+            foreach (var item in User.UsernameList())
             {
-                lstUsers.Items.Add(username);
+                lstUsers.Items.Add(item);
+            }
+        }
+
+        void FillVakkenList()
+        {
+            // TODO - Get user ID other way, not by list selected index
+            lstVakken.Items.Clear();
+            Vak v = new Vak(lstUsers.SelectedIndex + 1);
+            foreach(var item in v.CurrentUserVakNaamList)
+            {
+                lstVakken.Items.Add(item);
             }
         }
 
@@ -67,20 +77,15 @@ namespace ExamenOefenen
             }
         }
 
-
-        // TODO - VakkenListTester Testen en als het werkt verwijderen
-        void VakkenListTester()
-        {
-            Vak v = new Vak();
-            foreach (Vak vak in v.VakkenList())
-            {
-                lstVakken.Items.Add(vak.VakID + ": " + vak.VakNaam);
-            }
-        }
-
         private void btnLaadVakken_Click(object sender, RoutedEventArgs e)
         {
-            VakkenListTester();
+            FillVakkenList();
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            lstUsers.Items.Clear();
+            FillUserList();
         }
     }
 }

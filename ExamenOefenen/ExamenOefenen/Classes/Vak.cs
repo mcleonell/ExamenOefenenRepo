@@ -9,84 +9,94 @@ namespace ExamenOefenen
     class Vak
     {
         //ExamenOefenen.dbo.vakken (vakID, vakNaam, vakBeschrijving, userID)
-        int vakID;
         string vaknaam;
         string vakbeschrijving;
         int userID;
 
-        public int VakID { get { return vakID; } set { vakID = value; } }
         public string VakNaam { get { return vaknaam; } set { vaknaam = value; } }
         public string VakBeschrijving { get { return vakbeschrijving; } set { vakbeschrijving = value; } }
         public int UserID { get { return userID; } set { userID = value; } }
 
-
-        // TODO - Testen ophalen vakken en vakken storen in lijst van vakken
-        public List<Vak> VakkenList()
-        {
-            List<Vak> vakkenList = new List<Vak>();
-
-            for (int i = 0; i < VakIDList().Count(); i++)
-            {
-                Vak v = new Vak();
-                v.vakID = v.VakIDList()[i];
-                v.vaknaam = v.VakNaamList()[i];
-                v.vakbeschrijving = v.VakBeschrijvingList()[i];
-                v.userID = v.UserIDList()[i];
-            }
-
-            return vakkenList;
-        }
-
-        public List<int> VakIDList()
+        
+        public static List<int> VakIDList()
         {
             Database db = new Database();
             List<int> vakIDList = new List<int>();
 
-            foreach (int vakID in db.GetColumn("vakken", "vakID"))
+            foreach (int vakID in db.GetColumn("vakken", "vakID", "vakID"))
             {
                 vakIDList.Add(vakID);
             }
 
             return vakIDList;
         }
-
-        public List<string> VakNaamList()
+        public static List<string> VakNaamList()
         {
             Database db = new Database();
             List<string> vakNaamList = new List<string>();
 
-            foreach (string vakNaam in db.GetColumn("vakken", "vakNaam"))
+            foreach (string vakNaam in db.GetColumn("vakken", "vakNaam", "vakID"))
             {
                 vakNaamList.Add(vakNaam);
             }
 
             return vakNaamList;
         }
-
-        public List<string> VakBeschrijvingList()
+        public static List<string> VakBeschrijvingList()
         {
             Database db = new Database();
             List<string> vakBeshcrijvingList = new List<string>();
 
-            foreach (string vakBeschrijving in db.GetColumn("vakken", "vakBeschrijving"))
+            foreach (string vakBeschrijving in db.GetColumn("vakken", "vakBeschrijving", "vakID"))
             {
                 vakBeshcrijvingList.Add(vakBeschrijving);
             }
 
             return vakBeshcrijvingList;
         }
-
-        public List<int> UserIDList()
+        public static List<int> UserIDList()
         {
             Database db = new Database();
             List<int> userIDList = new List<int>();
 
-            foreach (int userID in db.GetColumn("vakken", "userID"))
+            foreach (int userID in db.GetColumn("vakken", "userID", "vakID"))
             {
                 userIDList.Add(userID);
             }
 
             return userIDList;
+        }
+
+        public int currentUserID;
+        public List<int> CurrentUserVakIdList;
+        public List<string> CurrentUserVakNaamList;
+        public List<string> CurrentUserVakBeschrijvingList;
+
+        /// <summary>
+        /// Fills CurrentUserVakIdList, CurrentUserVakNaamList, CurrentUserVakBeschrijvingList with vakdata from selected user
+        /// </summary>
+        /// <param name="_userID">Int to select currentUserID</param>
+        public Vak(int _userID)
+        {
+            currentUserID = _userID;
+            CurrentUserVakIdList = new List<int>();
+            CurrentUserVakNaamList = new List<string>();
+            CurrentUserVakBeschrijvingList = new List<string>();
+
+            for (int i = 0; i < UserIDList().Count(); i++)
+            {
+                if (_userID == UserIDList()[i])
+                {
+                    CurrentUserVakIdList.Add(VakIDList()[i]);
+                    CurrentUserVakNaamList.Add(VakNaamList()[i]);
+                    CurrentUserVakBeschrijvingList.Add(VakBeschrijvingList()[i]);
+                }
+            }
+        }
+
+        public void CreateVak()
+        {
+            // TODO - Make this add vak to datebase
         }
     }
 }
