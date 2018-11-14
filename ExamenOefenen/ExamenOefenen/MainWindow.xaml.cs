@@ -28,9 +28,10 @@ namespace ExamenOefenen
 
         void FillUserList()
         {
-            foreach (var item in User.UsernameList())
+            foreach (User user in User.UserList())
             {
-                lstUsers.Items.Add(item);
+                ListItem lstItem = new ListItem();
+                // TODO - geef ieder listitem een text (UserList.username) en een value (UserList.userID)
             }
         }
 
@@ -38,10 +39,10 @@ namespace ExamenOefenen
         {
             // TODO - Get user ID other way, not by list selected index
             lstVakken.Items.Clear();
-            Vak v = new Vak(lstUsers.SelectedIndex + 1);
-            foreach(var item in v.CurrentUserVakNaamList)
+            Vak v = new Vak();
+            foreach(Vak vak in v.CurrentUserVakken(1))
             {
-                lstVakken.Items.Add(item);
+                lstVakken.Items.Add(vak.VakNaam);
             }
         }
 

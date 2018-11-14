@@ -9,7 +9,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
 
 
 namespace ExamenOefenen
@@ -37,9 +36,9 @@ namespace ExamenOefenen
         /// </summary>
         /// <param name="_table">Table from which you want to retrieve data</param>
         /// <param name="_column">Column from which you want to retrieve data</param>
-        /// <param name="_orderBy">Colum which the returned values will be ordered by (tpyicaly ID) </param>
+        /// <param name="_equation">Narrow down the returned list use 1 = 1 for all results for column</param>
         /// <returns></returns>
-        public ArrayList GetColumn(string _table, string _column, string _orderBy)
+        public ArrayList GetColumn(string _table, string _column, string _equation)
         {
             // TODO - Make it accept more columns at once
 
@@ -50,7 +49,7 @@ namespace ExamenOefenen
             using (con)
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT " + _column + " FROM " + _table + " ORDER BY " + _orderBy, con);
+                SqlCommand cmd = new SqlCommand("SELECT " + _column + " FROM " + _table + " WHERE " + _equation, con);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 

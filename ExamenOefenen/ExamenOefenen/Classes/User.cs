@@ -11,35 +11,31 @@ namespace ExamenOefenen
         //ExamenOefenen.dbo.users (userID, username)
 
         #region vars
+        int userID;
         string username;
+
+        public int UserID { get { return userID; } set { userID = value; } }
         public string Username{ get { return username;} set { username = value; } }
         
         // TODO - Als alles van vakken werkt moeten de lijst van vakken per userID hierin geladen worden 
         #endregion
 
-        public static List<int> UserIDList()
+        
+
+        public static List<User> UserList()
         {
             Database db = new Database();
-            List<int> userIDList = new List<int>();
+            List<User> userList = new List<User>();
 
-            foreach (var item in db.GetColumn("users", "userID", "userID"))
+            for (int i = 0; i < db.GetColumn("users","userID"," 1 = 1").Count; i++)
             {
-                userIDList.Add((int)item);
+                int userIDTemp = (int)db.GetColumn("users", "userID", " 1 = 1" )[i];
+                string usernameTemp = db.GetColumn("users", "username", "1 = 1")[i].ToString();
+
+                userList.Add(new User() { userID = userIDTemp, username = usernameTemp });
             }
 
-            return userIDList;
-        }
-        public static List<string> UsernameList()
-        {
-            Database db = new Database();
-            List<string> usernameList = new List<string>();
-
-            foreach (var item in db.GetColumn("users", "username", "userID"))
-            {
-                usernameList.Add(item.ToString());
-            }
-            
-            return usernameList;
+            return userList;
         }
 
         public void CreateUser(string _input)

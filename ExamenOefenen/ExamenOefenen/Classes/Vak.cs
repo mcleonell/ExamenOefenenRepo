@@ -9,89 +9,43 @@ namespace ExamenOefenen
     class Vak
     {
         //ExamenOefenen.dbo.vakken (vakID, vakNaam, vakBeschrijving, userID)
+        public int vakID;
         string vaknaam;
         string vakbeschrijving;
         int userID;
 
+        public int VakID { get; set; }
         public string VakNaam { get { return vaknaam; } set { vaknaam = value; } }
         public string VakBeschrijving { get { return vakbeschrijving; } set { vakbeschrijving = value; } }
         public int UserID { get { return userID; } set { userID = value; } }
 
-        
-        public static List<int> VakIDList()
-        {
-            Database db = new Database();
-            List<int> vakIDList = new List<int>();
-
-            foreach (int vakID in db.GetColumn("vakken", "vakID", "vakID"))
-            {
-                vakIDList.Add(vakID);
-            }
-
-            return vakIDList;
-        }
-        public static List<string> VakNaamList()
-        {
-            Database db = new Database();
-            List<string> vakNaamList = new List<string>();
-
-            foreach (string vakNaam in db.GetColumn("vakken", "vakNaam", "vakID"))
-            {
-                vakNaamList.Add(vakNaam);
-            }
-
-            return vakNaamList;
-        }
-        public static List<string> VakBeschrijvingList()
-        {
-            Database db = new Database();
-            List<string> vakBeshcrijvingList = new List<string>();
-
-            foreach (string vakBeschrijving in db.GetColumn("vakken", "vakBeschrijving", "vakID"))
-            {
-                vakBeshcrijvingList.Add(vakBeschrijving);
-            }
-
-            return vakBeshcrijvingList;
-        }
-        public static List<int> UserIDList()
-        {
-            Database db = new Database();
-            List<int> userIDList = new List<int>();
-
-            foreach (int userID in db.GetColumn("vakken", "userID", "vakID"))
-            {
-                userIDList.Add(userID);
-            }
-
-            return userIDList;
-        }
-
         public int currentUserID;
-        public List<int> CurrentUserVakIdList;
-        public List<string> CurrentUserVakNaamList;
-        public List<string> CurrentUserVakBeschrijvingList;
+        public List<Vak> CurrentUserVakken(int _userID) {
+
+            currentUserID = _userID;
+
+            List<Vak> vakken = new List<Vak>();
+
+            Database db = new Database();
+
+            for (int i = 0; i < db.GetColumn("vakken", "vakID", "userID = " + _userID.ToString()).Count; i++)
+            {
+                int vakIDTemp = (int)db.GetColumn("vakken", "vakID", "userID = " + _userID.ToString())[i];
+                string vaknaamTemp = db.GetColumn("vakken", "vaknaam", "userID = " + _userID.ToString())[i].ToString();
+                string vakbeschrijvingTemp = db.GetColumn("vakken", "vakbeschrijving", "userID = " + _userID.ToString())[i].ToString();
+                
+                vakken.Add(new Vak() { vakID = vakIDTemp, vaknaam = vaknaamTemp, vakbeschrijving = vakbeschrijvingTemp });
+            }
+
+            return vakken;
+        }
 
         /// <summary>
         /// Fills CurrentUserVakIdList, CurrentUserVakNaamList, CurrentUserVakBeschrijvingList with vakdata from selected user
         /// </summary>
         /// <param name="_userID">Int to select currentUserID</param>
-        public Vak(int _userID)
+        public Vak()
         {
-            currentUserID = _userID;
-            CurrentUserVakIdList = new List<int>();
-            CurrentUserVakNaamList = new List<string>();
-            CurrentUserVakBeschrijvingList = new List<string>();
-
-            for (int i = 0; i < UserIDList().Count(); i++)
-            {
-                if (_userID == UserIDList()[i])
-                {
-                    CurrentUserVakIdList.Add(VakIDList()[i]);
-                    CurrentUserVakNaamList.Add(VakNaamList()[i]);
-                    CurrentUserVakBeschrijvingList.Add(VakBeschrijvingList()[i]);
-                }
-            }
         }
 
         public void CreateVak()

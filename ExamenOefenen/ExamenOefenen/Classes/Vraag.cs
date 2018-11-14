@@ -10,13 +10,20 @@ namespace ExamenOefenen
     {
         //ExamenOefenen.dbo.vragen (vraagID, vraagstuk, antwoord, vakID)
 
+        int vraagID;
         string vraagstuk;
         string antwoord;
+        int vakID;
 
+        public int VraagID { get { return vraagID; } set { vraagID = value; } }
         public string Vraagstuk { get { return vraagstuk; } set { vraagstuk = value; } }
         public string Antwoord { get { return antwoord; } set { antwoord = value; } }
+        public int VakID { get { return vakID; } set { vakID = value; } }
+        
+        public int currentVakID;
+        public List<Vraag> CurrentVakVragen;
 
-        Vraag()
+        public Vraag(int _vakID)
         {
 
         }
