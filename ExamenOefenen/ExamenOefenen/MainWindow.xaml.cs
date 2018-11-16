@@ -20,6 +20,8 @@ namespace ExamenOefenen
     /// </summary>
     public partial class MainWindow : Window
     {
+        User currentUser;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,11 +30,15 @@ namespace ExamenOefenen
 
         void FillUserList()
         {
-            foreach (User user in User.UserList())
+            foreach (var user in User.GetUserList())
             {
-                ListItem lstItem = new ListItem();
-                // TODO - geef ieder listitem een text (UserList.username) en een value (UserList.userID)
+                lstUsers.Items.Add(user.Username);
             }
+        }
+
+        void SelectUser()
+        {
+            currentUser = User.GetUserList().Find(x => x.Username == lstUsers.SelectedItem.ToString());
         }
 
         void FillVakkenList()
@@ -61,7 +67,8 @@ namespace ExamenOefenen
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            // TODO - Open vakken selectie
+            SelectUser();
+            //Laad vakkenlijst UserVakken();
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)

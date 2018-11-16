@@ -6,38 +6,42 @@ using System.Threading.Tasks;
 
 namespace ExamenOefenen
 {
-    class User
+    class UserObjectTest
     {
         public int UserID { get; private set; }
         public string Username { get; private set; }
 
-        public User()
+        public UserObjectTest()
         {
 
+        }
+
+        public UserObjectTest(int userID)
+        {
+            UserID = userID;
         }
 
         public string GetUser()
         {
             Database db = new Database();
-            return db.GetColumn("users", "username", "userID = " + UserID).ToString();
+            return db.GetColumn("users","username","userID = " + UserID).ToString();
         }
 
-        public static List<User> GetUserList()
+        public List<UserObjectTest> GetUserList()
         {
-            List<User> users = new List<User>();
+            List<UserObjectTest> users = new List<UserObjectTest>();
 
             Database db = new Database();
 
             List<int> userIDList()
             {
-                List<int> userIDs = new List<int>();
+                List<string> userIDs = new List<string>();
                 foreach (var userId in db.GetColumn("users", "userID", " 1 = 1 "))
                 {
-                    userIDs.Add((int)userId);
+                    usernames.Add((int)userId);
                 }
-                return userIDs;
+                return usernames;
             }
-
             List<string> usernameList()
             {
                 List<string> usernames = new List<string>();
@@ -47,31 +51,16 @@ namespace ExamenOefenen
                 }
                 return usernames;
             }
-
-            for (int i = 0; i < db.GetColumn("users", "userID", " 1 = 1 ").Count; i++)
+            
+            for (int i = 0; i < db.GetColumn("users","userID"," 1 = 1 ").Count(); i++)
             {
-                User u = new User();
-                u.UserID = userIDList()[i];
-                u.Username = usernameList()[i];
+                UserObjectTest u = new UserObjectTest();
+                u.UserID = userIDList[i];
+                u.Username = usernameList[i];
                 users.Add(u);
             }
-
+               
             return users;
-        }
-
-        public List<Vak> VakkenVoorCurrentUser(int userID)
-        {
-            List<Vak> v = new List<Vak>();
-
-            //TODO - Laat Vak.CurrentUserVakkenLijst(userID);
-
-            return v;
-        }
-
-        public void CreateUser(string _input)
-        {
-            Database db = new Database();
-            db.AddToColumn("users", "username", _input);
         }
     }
 }
