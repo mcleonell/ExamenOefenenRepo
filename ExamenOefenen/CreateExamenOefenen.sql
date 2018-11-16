@@ -1,5 +1,7 @@
 create database ExamenOefenen
 go
+use ExamenOefenen
+go
 create table users(
 userID int not null primary key identity,
 username varchar(50) unique)
