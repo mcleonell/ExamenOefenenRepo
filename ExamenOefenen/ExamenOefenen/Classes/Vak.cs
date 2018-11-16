@@ -9,48 +9,44 @@ namespace ExamenOefenen
     class Vak
     {
         //ExamenOefenen.dbo.vakken (vakID, vakNaam, vakBeschrijving, userID)
-        public int vakID;
-        string vaknaam;
-        string vakbeschrijving;
+        int vakID;
+        string vakNaam;
+        string beschrijving;
         int userID;
 
-        public int VakID { get; set; }
-        public string VakNaam { get { return vaknaam; } set { vaknaam = value; } }
-        public string VakBeschrijving { get { return vakbeschrijving; } set { vakbeschrijving = value; } }
+        public int VakID { get { return vakID; } set { vakID = value; } }
+        public string VakNaam { get { return vakNaam; } set { vakNaam = value; } }
+        public string VakBeschrijving { get { return beschrijving; } set { beschrijving = value; } }
         public int UserID { get { return userID; } set { userID = value; } }
 
-        public int currentUserID;
-        public List<Vak> CurrentUserVakken(int _userID) {
+        public List<Vraag> Vragen(int _currentVakID)
+        {
 
-            currentUserID = _userID;
-
-            List<Vak> vakken = new List<Vak>();
+            List<Vraag> vragen = new List<Vraag>();
 
             Database db = new Database();
 
-            for (int i = 0; i < db.GetColumn("vakken", "vakID", "userID = " + _userID.ToString()).Count; i++)
+            string equation = "vakID = " + _currentVakID.ToString();
+
+            for (int i = 0; i < db.GetColumn("vragen", "vraagID", equation).Count; i++)
             {
-                int vakIDTemp = (int)db.GetColumn("vakken", "vakID", "userID = " + _userID.ToString())[i];
-                string vaknaamTemp = db.GetColumn("vakken", "vaknaam", "userID = " + _userID.ToString())[i].ToString();
-                string vakbeschrijvingTemp = db.GetColumn("vakken", "vakbeschrijving", "userID = " + _userID.ToString())[i].ToString();
-                
-                vakken.Add(new Vak() { vakID = vakIDTemp, vaknaam = vaknaamTemp, vakbeschrijving = vakbeschrijvingTemp });
+
+                Vraag v = new Vraag();
+
+                v.VraagID = (int)db.GetColumn("vragen", "vraagID", equation)[i];
+                v.Vraagstuk = db.GetColumn("vragen", "vraagstuk", equation)[i].ToString();
+                v.Antwoord = db.GetColumn("vragen", "antwoord", equation)[i].ToString();
+
+                vragen.Add(v);
             }
 
-            return vakken;
+            return vragen;
         }
-
-        /// <summary>
-        /// Fills CurrentUserVakIdList, CurrentUserVakNaamList, CurrentUserVakBeschrijvingList with vakdata from selected user
-        /// </summary>
-        /// <param name="_userID">Int to select currentUserID</param>
-        public Vak()
+        
+        public static void CreateVak(string _vakNaam, string _vakBeschrijving, int _currentUserID)
         {
-        }
-
-        public void CreateVak()
-        {
-            // TODO - Make this add vak to datebase
+            Database db = new Database();
+            db.AddToColumn("vakken", "vakNaam", "vakBeschrijving", "userID", _vakNaam, _vakBeschrijving, _currentUserID);
         }
     }
 }
