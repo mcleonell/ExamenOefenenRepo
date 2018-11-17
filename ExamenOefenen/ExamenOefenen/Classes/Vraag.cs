@@ -9,21 +9,41 @@ namespace ExamenOefenen
     class Vraag
     {
         //ExamenOefenen.dbo.vragen (vraagID, vraagstuk, antwoord, vakID)
-
-        int vraagID;
-        string vraagstuk;
-        string antwoord;
-        int vakID;
-
-        public int VraagID { get { return vraagID; } set { vraagID = value; } }
-        public string Vraagstuk { get { return vraagstuk; } set { vraagstuk = value; } }
-        public string Antwoord { get { return antwoord; } set { antwoord = value; } }
-        public int VakID { get { return vakID; } set { vakID = value; } }
-
-        public static void CreateVraag(string _vraagstuk, string _antwoord, int _currentVakID)
+        #region vars
+        public int VraagID { get; set; }
+        public string Vraagstuk { get; set; }
+        public string Antwoord { get; set; }
+        public int VakID { get; set; }
+        #endregion
+        #region methods
+        #region bool
+        public static bool DoesntExist(string _vraag, int _vakID)
         {
             Database db = new Database();
-            db.AddToColumn("vragen", "vraagstuk", "antwoord", "vakID", _vraagstuk, _antwoord, _currentVakID);
+            if (db.Exists("vragen", "vraagstuk", _vraag.ToLower(), "vakID", _vakID))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
+        #endregion
+        #region void
+        public static void Create(string _vraagstuk, string _antwoord, int _currentVakID)
+        {
+            Database.Insert("vragen", "vraagstuk", "antwoord", "vakID", _vraagstuk.ToLower(), _antwoord, _currentVakID);
+        }
+        public static void Delete(int _vraagID)
+        {
+            Database.Delete("vragen", "vraagID = " + _vraagID);
+        }
+        #endregion
+        #endregion
+
+
+
+
     }
 }

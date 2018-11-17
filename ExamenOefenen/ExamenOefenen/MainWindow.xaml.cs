@@ -23,7 +23,7 @@ namespace ExamenOefenen
         #region vars
         User CurrentUser()
         {
-            return User.GetUserList().Find(x => x.Username == lstUsers.SelectedItem.ToString());
+            return User.AllUsers().Find(x => x.Username == lstUsers.SelectedItem.ToString());
         }
         Vak CurrentVak()
         {
@@ -43,22 +43,23 @@ namespace ExamenOefenen
 
         #region Events
         #region btnClicks
+        private void btnAntwoord_Click(object sender, RoutedEventArgs e)
+        {
+            lblAntwoord.Content = CurrentVraag().Antwoord;
+        }
         private void btnCreateUser_Click(object sender, RoutedEventArgs e)
         {
             string username = txtNewUsername.Text;
 
             if (User.DoesntExist(username))
             {
-                User.CreateUser(username);
-
-                lstUsers.Items.Clear();
-                FillUserList();
+                User.Create(username);
+                RefreshUserList();
             }
             else
             {
                 MessageBox.Show("Username exists already, pick a different one.");
             }
-
         }
         private void btnCreateVak_Click(object sender, RoutedEventArgs e)
         {
@@ -69,10 +70,15 @@ namespace ExamenOefenen
             {
                 if (vaknaam != "" && vakBeschrijving != "")
                 {
-                    Vak.CreateVak(vaknaam, vakBeschrijving, CurrentUser().UserID);
-
-                    lstVakken.Items.Clear();
-                    FillVakkenList();
+                    if (Vak.DoesntExist(vaknaam, CurrentUser().UserID))
+                    {
+                        Vak.Create(vaknaam, vakBeschrijving, CurrentUser().UserID);
+                        RefreschVakkenList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vak bestaat al voor deze user.");
+                    }
                 }
                 else if (vaknaam != "" && vakBeschrijving == "")
                 {
@@ -99,10 +105,15 @@ namespace ExamenOefenen
 
             if (vraag != "" && antwoord != "")
             {
-                Vraag.CreateVraag(vraag, antwoord, CurrentVak().VakID);
-
-                lstVragen.Items.Clear();
-                FillVragenList();
+                if (Vraag.DoesntExist(vraag, CurrentVak().VakID))
+                {
+                    Vraag.Create(vraag, antwoord, CurrentVak().VakID);
+                    RefreshVragenList();
+                }
+                else
+                {
+                    MessageBox.Show("Vraag bestaat al voor dit vak.");
+                }
             }
             else if (vraag != "" && antwoord == "")
             {
@@ -117,9 +128,20 @@ namespace ExamenOefenen
                 MessageBox.Show("Gelieve een vraag alsook een antwoord in te vullen.");
             }
         }
-        private void btnAntwoord_Click(object sender, RoutedEventArgs e)
+        private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            lblAntwoord.Content = CurrentVraag().Antwoord;
+            User.Delete(CurrentUser().UserID);
+            RefreshUserList();
+        }
+        private void btnDeleteVak_Click(object sender, RoutedEventArgs e)
+        {
+            Vak.Delete(CurrentVak().VakID);
+            RefreschVakkenList();
+        }
+        private void btnDeleteVraag_Click(object sender, RoutedEventArgs e)
+        {
+            Vraag.Delete(CurrentVraag().VraagID);
+            RefreshVragenList();
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -156,7 +178,7 @@ namespace ExamenOefenen
         #region methods
         void FillUserList()
         {
-            foreach (var user in User.GetUserList())
+            foreach (var user in User.AllUsers())
             {
                 lstUsers.Items.Add(user.Username);
             }
@@ -177,9 +199,25 @@ namespace ExamenOefenen
                 lstVragen.Items.Add(vraag.Vraagstuk);
             }
         }
+        void RefreshUserList()
+        {
+            lstUsers.Items.Clear();
+            lstVakken.Items.Clear();
+            lstVragen.Items.Clear();
+            FillUserList();
+        }
+        void RefreschVakkenList()
+        {
+            lstVakken.Items.Clear();
+            lstVragen.Items.Clear();
+            FillVakkenList();
+        }
+        void RefreshVragenList()
+        {
+            lstVragen.Items.Clear();
+            FillVragenList();
+        }
         #endregion
-
-
 
 
 

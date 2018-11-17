@@ -9,16 +9,28 @@ namespace ExamenOefenen
     class Vak
     {
         //ExamenOefenen.dbo.vakken (vakID, vakNaam, vakBeschrijving, userID)
-        int vakID;
-        string vakNaam;
-        string beschrijving;
-        int userID;
-
-        public int VakID { get { return vakID; } set { vakID = value; } }
-        public string VakNaam { get { return vakNaam; } set { vakNaam = value; } }
-        public string VakBeschrijving { get { return beschrijving; } set { beschrijving = value; } }
-        public int UserID { get { return userID; } set { userID = value; } }
-
+        #region vars
+        public int VakID { get; set; }
+        public string VakNaam { get; set; }
+        public string VakBeschrijving { get; set; }
+        public int UserID { get; set; }
+        #endregion
+        #region methods
+        #region bool
+        public static bool DoesntExist(string _vakNaam, int _userID)
+        {
+            Database db = new Database();
+            if (db.Exists("vakken", "vakNaam", _vakNaam.ToLower() , "userID", _userID))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        #endregion
+        #region List
         public List<Vraag> Vragen(int _currentVakID)
         {
 
@@ -42,11 +54,24 @@ namespace ExamenOefenen
 
             return vragen;
         }
-        
-        public static void CreateVak(string _vakNaam, string _vakBeschrijving, int _currentUserID)
+        #endregion
+        #region void
+        public static void Create(string _vakNaam, string _vakBeschrijving, int _currentUserID)
         {
-            Database db = new Database();
-            db.AddToColumn("vakken", "vakNaam", "vakBeschrijving", "userID", _vakNaam, _vakBeschrijving, _currentUserID);
+            Database.Insert("vakken", "vakNaam", "vakBeschrijving", "userID", _vakNaam.ToLower(), _vakBeschrijving, _currentUserID);
         }
+        public static void Delete(int _vakID)
+        {
+            Vak vak = new Vak();
+            foreach(Vraag vraag in vak.Vragen(_vakID))
+            {
+                Vraag.Delete(vraag.VraagID);
+            }
+            Database.Delete("vakken", "vakID = " + _vakID);
+        }
+        #endregion
+        #endregion
+
+
     }
 }

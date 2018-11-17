@@ -23,9 +23,9 @@ namespace ExamenOefenen
         /// </summary>
         /// <param name="_table">Table from which you want to retrieve data</param>
         /// <param name="_column">Column from which you want to retrieve data</param>
-        /// <param name="_equation">Narrow down the returned list use 1 = 1 for all results for column</param>
+        /// <param name="_condition">Narrow down the returned list use 1 = 1 for all results for column</param>
         /// <returns></returns>
-        public ArrayList GetColumn(string _table, string _column, string _equation)
+        public ArrayList GetColumn(string _table, string _column, string _condition)
         {
             // TODO - Make it accept more columns at once
 
@@ -34,7 +34,7 @@ namespace ExamenOefenen
             using (SqlConnection con = new SqlConnection(Properties.Settings.Default.connectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT " + _column + " FROM " + _table + " WHERE " + _equation, con);
+                SqlCommand cmd = new SqlCommand("SELECT " + _column + " FROM " + _table + " WHERE " + _condition, con);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -64,12 +64,12 @@ namespace ExamenOefenen
         /// <param name="_column">Column you want to put _input in</param>
         /// <param name="_input">User input (value to add to database)</param>
         /// <returns></returns>
-        public void AddToColumn(string _table, string _column, string _input)
+        public static void Insert(string _table, string _column, string _input)
         {
             using (SqlConnection con = new SqlConnection(Properties.Settings.Default.connectionString))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("insert into " + _table + " (" + _column + ") values (@Input)", con))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO " + _table + " (" + _column + ") VALUES (@Input)", con))
                 {
                     cmd.Parameters.Add("@Input", SqlDbType.VarChar).Value = _input;
                     cmd.ExecuteNonQuery();
@@ -86,12 +86,12 @@ namespace ExamenOefenen
         /// <param name="_input">User input1 (first value to add to database)</param>
         /// <param name="_id">int ID (Integer value to add to database)</param>
         /// <returns></returns>
-        public void AddToColumn(string _table, string _column, string _idColumn, string _input, int _id)
+        public static void Insert(string _table, string _column, string _idColumn, string _input, int _id)
         {
             using (SqlConnection con = new SqlConnection(Properties.Settings.Default.connectionString))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("insert into " + _table + " (" + _column + "," + _idColumn + ") values (@Input, @ID)", con))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO " + _table + " (" + _column + "," + _idColumn + ") VALUES (@Input, @ID)", con))
                 {
                     cmd.Parameters.Add("@Input", SqlDbType.VarChar).Value = _input;
                     cmd.Parameters.Add("@ID", SqlDbType.Int).Value = _id;
@@ -111,16 +111,33 @@ namespace ExamenOefenen
         /// <param name="_input2">User input2 (second value to add to database)</param>
         /// <param name="_id">int ID (Integer value to add to database)</param>
         /// <returns></returns>
-        public void AddToColumn(string _table, string _column1, string _column2, string _idColumn, string _input1, string _input2, int _id)
+        public static void Insert(string _table, string _column1, string _column2, string _idColumn, string _input1, string _input2, int _id)
         {
             using (SqlConnection con = new SqlConnection(Properties.Settings.Default.connectionString))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("insert into " + _table + " (" + _column1 + "," + _column2 + "," + _idColumn + ") values (@Input1, @Input2, @ID)", con))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO " + _table + " (" + _column1 + "," + _column2 + "," + _idColumn + ") VALUES (@Input1, @Input2, @ID)", con))
                 {
                     cmd.Parameters.Add("@Input1", SqlDbType.VarChar).Value = _input1;
                     cmd.Parameters.Add("@Input2", SqlDbType.VarChar).Value = _input2;
                     cmd.Parameters.Add("@ID", SqlDbType.Int).Value = _id;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Deletes record(s) from table with given condition
+        /// </summary>
+        /// <param name="_table">Table you want to delete record(s) from</param>
+        /// <param name="_condition">Condition</param>
+        public static void Delete(string _table, string _condition)
+        {
+            using (SqlConnection con = new SqlConnection(Properties.Settings.Default.connectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM " + _table + " WHERE " + _condition, con))
+                {
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -142,6 +159,37 @@ namespace ExamenOefenen
                 using (SqlCommand cmd = new SqlCommand("SELECT count(1) from " + _table + " where " + _column + " = @Input", con))
                 {
                     cmd.Parameters.Add("@Input", SqlDbType.VarChar).Value = _input;
+                    int count = (int)cmd.ExecuteScalar();
+                    if (count == 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Returns true if input exists in selected column of table in database
+        /// SELECT COUNT(1) FROM _table WHERE _column = '_input' AND _culumnID = _id
+        /// </summary>
+        /// <param name="_table">Table you want to check</param>
+        /// <param name="_column">Column you want to check</param>
+        /// <param name="_input">User input (value to check)</param>
+        /// <param name="_columnID">ID column name you want to check with</param>
+        /// <param name="_id">ID you want to check with</param>
+        /// <returns></returns>
+        public bool Exists(string _table, string _column, string _input, string _columnID, int _id)
+        {
+            using (SqlConnection con = new SqlConnection(Properties.Settings.Default.connectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT count(1) from " + _table + " where " + _column + " = @Input AND " + _columnID + " = @ID", con))
+                {
+                    cmd.Parameters.Add("@Input", SqlDbType.VarChar).Value = _input;
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = _id;
                     int count = (int)cmd.ExecuteScalar();
                     if (count == 0)
                     {

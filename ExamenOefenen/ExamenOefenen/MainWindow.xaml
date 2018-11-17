@@ -17,18 +17,21 @@
         <Label x:Name="lblVakDescription" Content="" Padding="0" HorizontalAlignment="Left" Margin="361,170,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Button x:Name="btnSelectVak" Content="Select" HorizontalAlignment="Left" Height="40" Margin="503,215,0,0" VerticalAlignment="Top" Width="94" Click="btnSelectVak_Click"/>
         <Label x:Name="lblVragenText" Content="Vragen" HorizontalAlignment="Left" Margin="798,10,0,0" VerticalAlignment="Top" Width="200"/>
-        <ListBox x:Name="lstVragen" HorizontalAlignment="Left" Height="108" Margin="799,56,0,0" VerticalAlignment="Top" Width="600" SelectionChanged="lstVakken_SelectionChanged"/>
-        <Button x:Name="btnAntwoord" Content="Antwoord" HorizontalAlignment="Left" Height="40" Margin="798,170,0,0" VerticalAlignment="Top" Width="120" Click="btnAntwoord_Click"/>
+        <ListBox x:Name="lstVragen" HorizontalAlignment="Left" Height="108" Margin="799,56,0,0" VerticalAlignment="Top" Width="600"/>
+        <Button x:Name="btnAntwoord" Content="Antwoord" HorizontalAlignment="Left" Height="40" Margin="932,170,0,0" VerticalAlignment="Top" Width="120" Click="btnAntwoord_Click"/>
         <Label x:Name="lblAntwoord" Content="" HorizontalAlignment="Left" Margin="799,215,0,0" Padding="0" VerticalAlignment="Top" FontSize="16"/>
         <TextBox x:Name="txtVakNaam" HorizontalAlignment="Left" Height="24" Margin="477,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="16"/>
         <TextBox x:Name="txtVakBeschrijving" HorizontalAlignment="Left" Height="24" Margin="477,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="16"/>
         <Label x:Name="lblVakNaamText" Content="Naam:" HorizontalAlignment="Left" Margin="361,272,0,0" VerticalAlignment="Top" Width="84" FontSize="16"/>
-        <Label x:Name="lblVakBeschrijvingText" Content="Beshchrijving:" HorizontalAlignment="Left" Margin="361,311,0,0" VerticalAlignment="Top" Width="116" FontSize="16"/>
+        <Label x:Name="lblVakBeschrijvingText" Content="Beschrijving:" HorizontalAlignment="Left" Margin="361,311,0,0" VerticalAlignment="Top" Width="116" FontSize="16"/>
         <Button x:Name="btnCreateVak" Content="Create" HorizontalAlignment="Left" Height="24" Margin="527,344,0,0" VerticalAlignment="Top" Width="70" Click="btnCreateVak_Click" FontSize="16"/>
-        <TextBox x:Name="txtVraag" HorizontalAlignment="Left" Height="24" Margin="919,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="16"/>
-        <TextBox x:Name="txtAntwoord" HorizontalAlignment="Left" Height="24" Margin="919,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="16"/>
+        <TextBox x:Name="txtVraag" HorizontalAlignment="Left" Height="24" Margin="919,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="400" FontSize="16"/>
+        <TextBox x:Name="txtAntwoord" HorizontalAlignment="Left" Height="24" Margin="919,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="400" FontSize="16"/>
         <Label x:Name="lblVraagText" Content="Vraag:" HorizontalAlignment="Left" Margin="803,272,0,0" VerticalAlignment="Top" Width="84" FontSize="16"/>
         <Label x:Name="lblAntwoordText" Content="Antwoord:" HorizontalAlignment="Left" Margin="803,311,0,0" VerticalAlignment="Top" Width="116" FontSize="16"/>
-        <Button x:Name="btnCreateVraag" Content="Create" HorizontalAlignment="Left" Height="24" Margin="969,344,0,0" VerticalAlignment="Top" Width="70" Click="btnCreateVraag_Click" FontSize="16"/>
+        <Button x:Name="btnCreateVraag" Content="Create" HorizontalAlignment="Left" Height="24" Margin="1249,344,0,0" VerticalAlignment="Top" Width="70" Click="btnCreateVraag_Click" FontSize="16"/>
+        <Button x:Name="btnDeleteUser" Content="Delete" HorizontalAlignment="Left" Height="40" Margin="10,215,0,0" VerticalAlignment="Top" Width="94" Click="btnDeleteUser_Click"/>
+        <Button x:Name="btnDeleteVak" Content="Delete" HorizontalAlignment="Left" Height="40" Margin="361,215,0,0" VerticalAlignment="Top" Width="94" Click="btnDeleteVak_Click"/>
+        <Button x:Name="btnDeleteVraag" Content="Delete" HorizontalAlignment="Left" Height="40" Margin="799,169,0,0" VerticalAlignment="Top" Width="94" Click="btnDeleteVraag_Click"/>
     </Grid>
 </Window>

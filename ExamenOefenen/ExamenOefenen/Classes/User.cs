@@ -8,15 +8,18 @@ namespace ExamenOefenen
 {
     class User
     {
+        //ExamenOefenen.dbo.vakken (userID, username)
+        #region vars
         public static bool LoggedIn = false;
-
-        public int UserID { get; private set; }
-        public string Username { get; private set; }
-
+        public int UserID { get; set; }
+        public string Username { get; set; }
+        #endregion
+        #region methods
+        #region bool
         public static bool DoesntExist(string _username)
         {
             Database db = new Database();
-            if(db.Exists("users", "username", _username.ToLower()))
+            if (db.Exists("users", "username", _username.ToLower()))
             {
                 return false;
             }
@@ -25,14 +28,9 @@ namespace ExamenOefenen
                 return true;
             }
         }
-
-        public static void CreateUser(string _username)
-        {
-            Database db = new Database();
-            db.AddToColumn("users", "username", _username.ToLower());
-        }
-
-        public static List<User> GetUserList()
+        #endregion
+        #region List
+        public static List<User> AllUsers()
         {
             List<User> users = new List<User>();
 
@@ -68,7 +66,6 @@ namespace ExamenOefenen
 
             return users;
         }
-
         public List<Vak> Vakken(int _currentUserID)
         {
             List<Vak> vakken = new List<Vak>();
@@ -91,5 +88,22 @@ namespace ExamenOefenen
 
             return vakken;
         }
+        #endregion
+        #region void
+        public static void Create(string _username)
+        {
+            Database.Insert("users", "username", _username.ToLower());
+        }
+        public static void Delete(int _userID)
+        {
+            User user = new User();
+            foreach (Vak vak in user.Vakken(_userID))
+            {
+                Vak.Delete(vak.VakID);
+            }
+            Database.Delete("users", "userID = " + _userID);
+        }
+        #endregion
+        #endregion
     }
 }
