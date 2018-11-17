@@ -10,6 +10,7 @@ namespace ExamenOefenen
     {
         //ExamenOefenen.dbo.vakken (userID, username)
         #region vars
+        public static User CurrentUser { get; set; }
         public static bool LoggedIn = false;
         public int UserID { get; set; }
         public string Username { get; set; }

@@ -10,6 +10,7 @@ namespace ExamenOefenen
     {
         //ExamenOefenen.dbo.vakken (vakID, vakNaam, vakBeschrijving, userID)
         #region vars
+        public static Vak CurrentVak { get; set; }
         public int VakID { get; set; }
         public string VakNaam { get; set; }
         public string VakBeschrijving { get; set; }

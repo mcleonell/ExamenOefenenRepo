@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace ExamenOefenen
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CreateVraagPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CreateVraagPage : Page
     {
-        public MainWindow()
+        public CreateVraagPage()
         {
             InitializeComponent();
-            mainFrame.NavigationService.Navigate(new Uri("Pages/LoginPage.xaml",UriKind.Relative));
         }
-
-
-
     }
 }
