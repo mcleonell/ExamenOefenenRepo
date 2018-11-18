@@ -50,7 +50,7 @@ namespace ExamenOefenen
         private void lstVakken_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Vak.CurrentVak = User.CurrentUser.Vakken(User.CurrentUser.UserID).Find(x => x.VakNaam == lstVakken.SelectedItem.ToString());
-            lblVakbeschrijving.Content = Vak.CurrentVak.VakBeschrijving;
+            tbVakbeschrijving.Text = Vak.CurrentVak.VakBeschrijving;
             vakSelected = true;
         }
         #endregion

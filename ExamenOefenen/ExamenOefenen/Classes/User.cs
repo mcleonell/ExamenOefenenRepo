@@ -20,7 +20,7 @@ namespace ExamenOefenen
         public static bool DoesntExist(string _username)
         {
             Database db = new Database();
-            if (db.Exists("users", "username", _username.ToLower()))
+            if (db.ExistsAllCase("users", "username", _username))
             {
                 return false;
             }
@@ -93,7 +93,7 @@ namespace ExamenOefenen
         #region void
         public static void Create(string _username)
         {
-            Database.Insert("users", "username", _username.ToLower());
+            Database.Insert("users", "username", _username);
         }
         public static void Delete(int _userID)
         {

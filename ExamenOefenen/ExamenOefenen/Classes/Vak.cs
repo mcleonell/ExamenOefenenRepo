@@ -21,7 +21,7 @@ namespace ExamenOefenen
         public static bool DoesntExist(string _vakNaam, int _userID)
         {
             Database db = new Database();
-            if (db.Exists("vakken", "vakNaam", _vakNaam.ToLower() , "userID", _userID))
+            if (db.ExistsAllCase("vakken", "vakNaam", _vakNaam , "userID", _userID))
             {
                 return false;
             }
@@ -59,7 +59,7 @@ namespace ExamenOefenen
         #region void
         public static void Create(string _vakNaam, string _vakBeschrijving, int _currentUserID)
         {
-            Database.Insert("vakken", "vakNaam", "vakBeschrijving", "userID", _vakNaam.ToLower(), _vakBeschrijving, _currentUserID);
+            Database.Insert("vakken", "vakNaam", "vakBeschrijving", "userID", _vakNaam, _vakBeschrijving, _currentUserID);
         }
         public static void Delete(int _vakID)
         {
@@ -72,7 +72,5 @@ namespace ExamenOefenen
         }
         #endregion
         #endregion
-
-
     }
 }

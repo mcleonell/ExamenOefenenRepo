@@ -29,15 +29,22 @@ namespace ExamenOefenen
         {
             string username = txtUsername.Text;
 
-            if (User.DoesntExist(username))
+            if (username != "")
             {
-                User.Create(username);
-                MessageBox.Show("New user created!");
-                NavigationService.GoBack();
+                if (User.DoesntExist(username))
+                {
+                    User.Create(username);
+                    MessageBox.Show("New user created!");
+                    NavigationService.GoBack();
+                }
+                else
+                {
+                    lblError.Content = "Username already exists, pick a different one.";
+                }
             }
             else
             {
-                lblError.Content = "Username exists already, pick a different one.";
+                lblError.Content = "No input detected";
             }
         }
     }

@@ -24,5 +24,37 @@ namespace ExamenOefenen
         {
             InitializeComponent();
         }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            string vaknaam = txtVakNaam.Text;
+            string vakBeschrijving = txtVakDescription.Text;
+
+            if (vaknaam != "" && vakBeschrijving != "")
+            {
+                if (Vak.DoesntExist(vaknaam, User.CurrentUser.UserID))
+                {
+                    Vak.Create(vaknaam, vakBeschrijving, User.CurrentUser.UserID);
+                    MessageBox.Show("New course created!");
+                    NavigationService.GoBack();
+                }
+                else
+                {
+                    lblError.Content = "Course already exists, pick a different name.";
+                }
+            }
+            else if (vaknaam != "" && vakBeschrijving == "")
+            {
+                lblError.Content = "Please add a brief description.";
+            }
+            else if (vaknaam == "" && vakBeschrijving != "")
+            {
+                lblError.Content = "Please add a name for the course.";
+            }
+            else
+            {
+                lblError.Content = "No input detected.";
+            }
+        }
     }
 }

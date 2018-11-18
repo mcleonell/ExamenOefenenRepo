@@ -12,10 +12,11 @@
         <ListBox x:Name="lstVakken" HorizontalAlignment="Left" Height="200" Margin="13,49,0,0" VerticalAlignment="Top" Width="243" FontSize="16" SelectionChanged="lstVakken_SelectionChanged"/>
         <Label x:Name="lblVakText" Content="Pick a course" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="13,12,0,0" Padding="0" VerticalAlignment="Top" FontSize="24" Width="243"/>
         <Label x:Name="lblBeschrijvingText" Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,254,0,0" Padding="0" FontSize="16"/>
-        <Label x:Name="lblVakbeschrijving" Content="None" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="102,254,0,0" Padding="0" FontSize="16" FontWeight="SemiBold"/>
-        <Button x:Name="btnSelecteer" Content="Select" HorizontalAlignment="Left" Margin="13,280,0,0" VerticalAlignment="Top" Width="93" Height="30" FontSize="16" FontWeight="SemiBold" Click="btnSelecteer_Click"/>
+        <Button x:Name="btnSelecteer" Content="Select" HorizontalAlignment="Left" Margin="13,294,0,0" VerticalAlignment="Top" Width="84" Height="30" FontSize="16" FontWeight="SemiBold" Click="btnSelecteer_Click"/>
         <Button x:Name="btnCreateNewVak" Content="Create one" HorizontalAlignment="Left" Margin="359,77,0,0" VerticalAlignment="Top" Width="93" Height="30" FontWeight="SemiBold" FontSize="16" Click="btnCreateNewVak_Click"/>
         <Label x:Name="lvlCreatNewVak" Content="Want to add a new course?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="261,51,0,0" Padding="0" FontSize="16"/>
-        <Label x:Name="lblError" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,315,0,0" Padding="0" FontSize="16" Foreground="Red"/>
+        <Label x:Name="lblError" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,329,0,0" Padding="0" FontSize="16" Foreground="Red"/>
+        <Border BorderBrush="#FFABADB3" BorderThickness="1" HorizontalAlignment="Left" Height="70" Margin="102,254,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBlock x:Name="tbVakbeschrijving" HorizontalAlignment="Left" Margin="102,254,0,0" Padding="5, 0, 5, 5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" Height="70"/>
     </Grid>
 </Page>

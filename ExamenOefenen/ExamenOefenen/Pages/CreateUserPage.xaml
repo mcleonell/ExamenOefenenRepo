@@ -10,7 +10,7 @@
 
     <Grid Background="white">
         <Label x:Name="lblCreateUserText" Content="New username" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="15,16,0,0" Padding="0" VerticalAlignment="Top" FontSize="24" Width="171"/>
-        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="24" Margin="15,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171" FontSize="16"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="24" Margin="15,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="171" FontSize="16"/>
         <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="15,95,0,0" VerticalAlignment="Top" Width="63" FontSize="16" FontWeight="SemiBold" Height="30" Click="btnCreate_Click"/>
         <Label x:Name="lblError" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,130,0,0" Padding="0" FontSize="16" Foreground="Red"/>
     </Grid>
