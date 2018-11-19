@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace ExamenOefenen
 {
@@ -25,7 +26,21 @@ namespace ExamenOefenen
         public LoginPage()
         {
             InitializeComponent();
-            FillUserList();
+            try
+            {
+                FillUserList();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error details: " + ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                using (SqlConnection con = new SqlConnection(Properties.Settings.Default.connectionString))
+                {
+                    con.Close();
+                }
+            }
         }
 
         #region events

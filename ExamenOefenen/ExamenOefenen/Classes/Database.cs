@@ -27,7 +27,7 @@ namespace ExamenOefenen
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand("DELETE FROM " + _table + " WHERE " + _condition, con))
                 {
-                    cmd.ExecuteNonQuery();
+                     cmd.ExecuteNonQuery();
                 }
             }
         }

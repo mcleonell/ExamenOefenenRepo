@@ -1,0 +1,2 @@
+﻿Local database MSI Laptop: Data Source=MSI\SQLEXPRESS;Initial Catalog=ExamenOefenen;Integrated Security=True
+Database home network Kim: 

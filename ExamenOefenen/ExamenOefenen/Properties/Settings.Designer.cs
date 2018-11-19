@@ -26,33 +26,11 @@ namespace ExamenOefenen.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-800DI9M;Initial Catalog=ExamenOefenen;Persist Security Info=T" +
-            "rue;User ID=mcleonell;Password=balvoet=old")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI\\SQLEXPRESS;Initial Catalog=ExamenOefenen;Integrated Security=True" +
+            "")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-800DI9M;Initial Catalog=ExamenOefenen;Persist Security Info=T" +
-            "rue;User ID=mcleonell;Password=balvoet=old")]
-        public string conStringHome {
-            get {
-                return ((string)(this["conStringHome"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI\\SQLEXPRESS;Initial Catalog=ExamenOefenen;Integrated Security=True" +
-            "")]
-        public string conStringLaptop {
-            get {
-                return ((string)(this["conStringLaptop"]));
             }
         }
     }
