@@ -47,5 +47,10 @@ namespace ExamenOefenen
                 lblError.Content = "No input detected";
             }
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

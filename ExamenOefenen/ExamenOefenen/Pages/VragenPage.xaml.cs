@@ -24,5 +24,10 @@ namespace ExamenOefenen
         {
             InitializeComponent();
         }
+
+        private void btnCreateNewVraag_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Pages/CreateVakPage.xaml", UriKind.Relative));
+        }
     }
 }

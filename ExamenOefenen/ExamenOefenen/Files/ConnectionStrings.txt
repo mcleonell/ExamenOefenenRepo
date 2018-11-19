@@ -1,2 +1,5 @@
-﻿Local database MSI Laptop: Data Source=MSI\SQLEXPRESS;Initial Catalog=ExamenOefenen;Integrated Security=True
+﻿Local database MSI Laptop: 
+Data Source=MSI\SQLEXPRESS;Initial Catalog=ExamenOefenen;Integrated Security=True
+
 Database home network Kim: 
+Data Source=DESKTOP-800DI9M;Initial Catalog=ExamenOefenen;Persist Security Info=True;User ID=mcleonell;Password=balvoet=old
