@@ -5,16 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ExamenOefenen"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="285"
       Title="LoginPage">
 
     <Grid Background="White">
         <ListBox x:Name="lstUsers" HorizontalAlignment="Left" Height="200" Margin="10,41,0,0" VerticalAlignment="Top" Width="240" FontSize="16" SelectionChanged="lstUsers_SelectionChanged"/>
         <Label x:Name="lblUserText" Content="Pick a user" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,4,0,0" Padding="0" VerticalAlignment="Top" FontSize="24" Width="240"/>
         <Label x:Name="lblLogInAsText" Content="Log in as:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,246,0,0" Padding="0" FontSize="16"/>
-        <Label x:Name="lblSelectedUsername" Content="None" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,246,0,0" Padding="0" FontSize="16" FontWeight="SemiBold"/>
+        <Label x:Name="lblSelectedUsername" Content="None" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,246,0,0" Padding="0" FontSize="16" FontWeight="SemiBold" Width="169"/>
         <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="10,272,0,0" VerticalAlignment="Top" Width="116" Height="30" FontSize="16" FontWeight="SemiBold" Click="btnLogin_Click"/>
         <Button x:Name="btnCreateNewUser" Content="Create one" HorizontalAlignment="Left" Margin="134,272,0,0" VerticalAlignment="Top" Width="116" Height="30" FontWeight="SemiBold" FontSize="16" Click="btnCreateNewUser_Click"/>
-        <Label x:Name="lblError" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,307,0,0" Padding="0" FontSize="16" Foreground="Red"/>
+        <Label x:Name="lblError" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,307,0,0" Padding="0" FontSize="12" Foreground="Red"/>
     </Grid>
 </Page>

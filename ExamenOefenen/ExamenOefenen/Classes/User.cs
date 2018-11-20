@@ -67,13 +67,13 @@ namespace ExamenOefenen
 
             return users;
         }
-        public List<Vak> Vakken(int _currentUserID)
+        public List<Vak> Vakken()
         {
             List<Vak> vakken = new List<Vak>();
 
             Database db = new Database();
 
-            string equation = "userID = " + _currentUserID.ToString();
+            string equation = "userID = " + CurrentUser.UserID.ToString() + " ORDER BY vakID";
 
             for (int i = 0; i < db.GetColumn("vakken", "vakID", equation).Count; i++)
             {
@@ -97,8 +97,7 @@ namespace ExamenOefenen
         }
         public static void Delete(int _userID)
         {
-            User user = new User();
-            foreach (Vak vak in user.Vakken(_userID))
+            foreach (Vak vak in User.CurrentUser.Vakken())
             {
                 Vak.Delete(vak.VakID);
             }

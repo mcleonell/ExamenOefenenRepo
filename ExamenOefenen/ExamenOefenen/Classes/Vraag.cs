@@ -10,6 +10,9 @@ namespace ExamenOefenen
     {
         //ExamenOefenen.dbo.vragen (vraagID, vraagstuk, antwoord, vakID)
         #region vars
+        static int vraagCounter = 0;
+        public static int VraagCounter { get { return vraagCounter; } set { vraagCounter = value; } }
+        public static Vraag CurrentVraag { get; set; }
         public int VraagID { get; set; }
         public string Vraagstuk { get; set; }
         public string Antwoord { get; set; }

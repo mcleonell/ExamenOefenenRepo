@@ -24,5 +24,42 @@ namespace ExamenOefenen
         {
             InitializeComponent();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            string vraag = txtQuestion.Text;
+            string antwoord = txtAnswer.Text;
+
+            if (vraag != "" && antwoord != "")
+            {
+                if (Vraag.DoesntExist(vraag, Vak.CurrentVak.VakID))
+                {
+                    Vraag.Create(vraag, antwoord, Vak.CurrentVak.VakID);
+                    MessageBox.Show("New question created!");
+                    NavigationService.GoBack();
+                }
+                else
+                {
+                    lblError.Content = "Course already exists, pick a different name.";
+                }
+            }
+            else if (vraag != "" && antwoord == "")
+            {
+                lblError.Content = "Please add a answer to the question.";
+            }
+            else if (vraag == "" && antwoord != "")
+            {
+                lblError.Content = "A answer without a question, hmmmm...";
+            }
+            else
+            {
+                lblError.Content = "No input detected.";
+            }
+        }
     }
 }

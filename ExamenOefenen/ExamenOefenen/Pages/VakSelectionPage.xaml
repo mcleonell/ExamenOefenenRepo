@@ -5,18 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ExamenOefenen"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="VakSelectionPage">
+      d:DesignHeight="450"
+      Title="VakSelectionPage" Width="285">
 
-    <Grid Background="White">
+    <Grid Background="White" HorizontalAlignment="Left" Margin="0,0,0,-0.4" Width="800">
         <ListBox x:Name="lstVakken" HorizontalAlignment="Left" Height="200" Margin="13,49,0,0" VerticalAlignment="Top" Width="243" FontSize="16" SelectionChanged="lstVakken_SelectionChanged"/>
         <Label x:Name="lblVakText" Content="Pick a course" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="13,12,0,0" Padding="0" VerticalAlignment="Top" FontSize="24" Width="243"/>
-        <Label x:Name="lblBeschrijvingText" Content="Description:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,254,0,0" Padding="0" FontSize="16"/>
-        <Button x:Name="btnSelecteer" Content="Select" HorizontalAlignment="Left" Margin="13,294,0,0" VerticalAlignment="Top" Width="84" Height="30" FontSize="16" FontWeight="SemiBold" Click="btnSelecteer_Click"/>
-        <Button x:Name="btnCreateNewVak" Content="Create one" HorizontalAlignment="Left" Margin="359,77,0,0" VerticalAlignment="Top" Width="93" Height="30" FontWeight="SemiBold" FontSize="16" Click="btnCreateNewVak_Click"/>
-        <Label x:Name="lblCreateNewVakText" Content="Want to add a new course?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="261,51,0,0" Padding="0" FontSize="16"/>
-        <Label x:Name="lblError" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,329,0,0" Padding="0" FontSize="16" Foreground="Red"/>
-        <Border BorderBrush="#FFABADB3" BorderThickness="1" HorizontalAlignment="Left" Height="70" Margin="102,254,0,0" VerticalAlignment="Top" Width="154"/>
-        <TextBlock x:Name="tbVakbeschrijving" HorizontalAlignment="Left" Margin="102,254,0,0" Padding="5, 0, 5, 5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" Height="70"/>
+        <Label x:Name="lblBeschrijvingText" Content="Description" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,254,0,0" Padding="0" FontSize="16" Width="243"/>
+        <Button x:Name="btnSelecteer" Content="Select" HorizontalAlignment="Left" Margin="13,356,0,0" VerticalAlignment="Top" Width="78" Height="30" FontSize="16" FontWeight="SemiBold" Click="btnSelecteer_Click"/>
+        <Button x:Name="btnCreateNewVak" Content="New" HorizontalAlignment="Left" Margin="96,356,0,0" VerticalAlignment="Top" Width="77" Height="30" FontWeight="SemiBold" FontSize="16" Click="btnCreateNewVak_Click"/>
+        <Label x:Name="lblError" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,391,0,0" Padding="0" FontSize="12" Foreground="Red"/>
+        <Border BorderBrush="#FFABADB3" BorderThickness="1" HorizontalAlignment="Left" Height="70" Margin="13,281,0,0" VerticalAlignment="Top" Width="243"/>
+        <TextBlock x:Name="tbVakbeschrijving" HorizontalAlignment="Left" Margin="13,280,0,0" Padding="5, 0, 5, 5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="243" Height="70" FontSize="16"/>
+        <Button x:Name="btnLogout" Content="Logout" HorizontalAlignment="Left" Margin="178,356,0,0" VerticalAlignment="Top" Width="78" Height="30" FontWeight="SemiBold" FontSize="16" Click="btnLogout_Click"/>
     </Grid>
 </Page>

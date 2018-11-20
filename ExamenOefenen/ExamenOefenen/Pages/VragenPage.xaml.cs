@@ -20,14 +20,41 @@ namespace ExamenOefenen
     /// </summary>
     public partial class VragenPage : Page
     {
+
         public VragenPage()
         {
             InitializeComponent();
+            FillVragenList();
         }
 
         private void btnCreateNewVraag_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("Pages/CreateVakPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("Pages/CreateVraagPage.xaml", UriKind.Relative));
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Pages/LoginPage.xaml", UriKind.Relative));
+        }
+
+        #region methods
+        void FillVragenList()
+        {
+            foreach (var vraag in Vak.CurrentVak.Vragen())
+            {
+                lstVragen.Items.Add(vraag.Vraagstuk);
+            }
+        }
+        #endregion
+
+        private void lstVragen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            VraagEnAntwoordWindow winVraagEnAntwoord = new VraagEnAntwoordWindow();
+            winVraagEnAntwoord.Show();
         }
     }
 }

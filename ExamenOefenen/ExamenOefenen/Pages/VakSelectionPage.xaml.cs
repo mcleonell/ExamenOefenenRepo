@@ -26,13 +26,17 @@ namespace ExamenOefenen
         public VakSelectionPage()
         {
             InitializeComponent();
-            FillUserList();
+            FillVakkenList();
         }
         #region events
         #region btnClicks
         private void btnCreateNewVak_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("Pages/CreateVakPage.xaml", UriKind.Relative));
+        }
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Pages/LoginPage.xaml", UriKind.Relative));
         }
         private void btnSelecteer_Click(object sender, RoutedEventArgs e)
         {
@@ -49,7 +53,7 @@ namespace ExamenOefenen
         #region selectionChanged
         private void lstVakken_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Vak.CurrentVak = User.CurrentUser.Vakken(User.CurrentUser.UserID).Find(x => x.VakNaam == lstVakken.SelectedItem.ToString());
+            Vak.CurrentVak = User.CurrentUser.Vakken().Find(x => x.VakNaam == lstVakken.SelectedItem.ToString());
             tbVakbeschrijving.Text = Vak.CurrentVak.VakBeschrijving;
             vakSelected = true;
         }
@@ -57,9 +61,9 @@ namespace ExamenOefenen
         #endregion
 
         #region methods
-        void FillUserList()
+        void FillVakkenList()
         {
-            foreach (var vak in User.CurrentUser.Vakken(User.CurrentUser.UserID))
+            foreach (var vak in User.CurrentUser.Vakken())
             {
                 lstVakken.Items.Add(vak.VakNaam);
             }

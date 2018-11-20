@@ -32,14 +32,14 @@ namespace ExamenOefenen
         }
         #endregion
         #region List
-        public List<Vraag> Vragen(int _currentVakID)
+        public List<Vraag> Vragen()
         {
 
             List<Vraag> vragen = new List<Vraag>();
 
             Database db = new Database();
 
-            string equation = "vakID = " + _currentVakID.ToString();
+            string equation = "vakID = " + CurrentVak.VakID.ToString() + " ORDER BY vraagID";
 
             for (int i = 0; i < db.GetColumn("vragen", "vraagID", equation).Count; i++)
             {
@@ -64,7 +64,7 @@ namespace ExamenOefenen
         public static void Delete(int _vakID)
         {
             Vak vak = new Vak();
-            foreach(Vraag vraag in vak.Vragen(_vakID))
+            foreach(Vraag vraag in vak.Vragen())
             {
                 Vraag.Delete(vraag.VraagID);
             }
